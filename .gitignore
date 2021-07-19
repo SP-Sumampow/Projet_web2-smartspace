@@ -1,2 +1,4 @@
 .DS_Store
 node_modules
+/src/firebaseClientKey.json
+/src/firebaseAdminKey.json
