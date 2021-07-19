@@ -1,6 +1,7 @@
 'use strict';
 
 const userController = require('./controller/userController');
+const todoController = require('./controller/todoController');
 
 const init = (app) => {
   // user
@@ -8,6 +9,9 @@ const init = (app) => {
   app.post('/user/signIn', userController.signIn);
   app.post('/user/logout', userController.logout);
   app.get('/user', userController.getUser);
+
+  //Todo
+  app.post('/todo', todoController.postTodo);
 
   app.get('/', async (req, res) => {
     res.send('<h1>Projet smartspace<h1>')
