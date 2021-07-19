@@ -15,5 +15,5 @@ router.init(app);
 
 
 app.listen(PORT, () => {
-  console.log('API-CENTRIC_BACK listening on port', PORT);
+  console.log('API smartspace listening on port', PORT);
 });

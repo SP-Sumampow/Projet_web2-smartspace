@@ -32,7 +32,7 @@ const postTodo = async (req, res) => {
     const todos = userDocData.todos ?? []
     let todoIndex = -1
     if (todos) {
-      todoIndex = todos.findIndex((todoSaved) => { todoSaved.title === todo.title})
+      todoIndex = todos.findIndex((todoSaved) => { todoSaved.title === title})
     }
     const hasTodo = todoIndex != -1
 
@@ -50,11 +50,11 @@ const postTodo = async (req, res) => {
     todos.push(newTodo)
 
     await db.collection('users').doc(uid).set({todos}, {merge: true});
-  
+
+    res.status(200).json({ "todo": newTodo});
+  } else {
+    res.status(404)
   }
-
-
-  res.status(200).json({ "todo": todo});
 };
 
 module.exports = {
