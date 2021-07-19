@@ -10,6 +10,7 @@ const postTodo = async (req, res) => {
   // authentification
   const token = req.cookies.token
   
+  //important
   if (!token) return res.status(401).send("cookie not found");
   const userpayload = await authMiddleware.decodeFirebaseIdToken(token)
   if (userpayload.error) return res.status(400).json({"error": userpayload.error});
@@ -57,6 +58,11 @@ const postTodo = async (req, res) => {
   }
 };
 
+const getTodos = (req, res) => {
+  res.status(200).json({ "todo": "newTodo"});
+}
+
 module.exports = {
-    postTodo,
+  postTodo,
+  getTodos
 };

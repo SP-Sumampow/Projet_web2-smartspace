@@ -12,6 +12,7 @@ const init = (app) => {
 
   //Todo
   app.post('/todo', todoController.postTodo);
+  app.get('/todos', todoController.getTodos);
 
   app.get('/', async (req, res) => {
     res.send('<h1>Projet SMART SPACE<h1>')
