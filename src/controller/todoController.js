@@ -3,6 +3,8 @@ const authMiddleware = require('../auth.middleware.js');
 const firebase = require('../firebaseConfig');
 const admin = require('firebase-admin');
 
+//const createDBTodo = db.collection('todos').doc(uid);
+
 const postTodo = async (req, res) => {
   const title = req.body.title;
   const description = req.body.description;
@@ -59,7 +61,7 @@ const postTodo = async (req, res) => {
 };
 
 const getTodos = (req, res) => {
-  res.status(200).json({ "todo": "newTodo"});
+  res.status(200).json({ "todo": [{ "title":"newTodo"}]});
 }
 
 module.exports = {

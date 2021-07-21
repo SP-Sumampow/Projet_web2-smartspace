@@ -2,6 +2,7 @@
 
 const userController = require('./controller/userController');
 const todoController = require('./controller/todoController');
+const placeController = require('./controller/placeController');
 
 const init = (app) => {
   // user
@@ -13,6 +14,9 @@ const init = (app) => {
   //Todo
   app.post('/todo', todoController.postTodo);
   app.get('/todos', todoController.getTodos);
+
+  //Rooms
+  app.get('/places', placeController.getPlaces);
 
   app.get('/', async (req, res) => {
     res.send('<h1>Projet SMART SPACE<h1>')
