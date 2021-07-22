@@ -49,9 +49,9 @@ const addTodo = async (req, res) => {
       status: "unset",
     }
 
-    // if (hasTodo) {
-    //   delete todos[todoIndex] 
-    // } 
+    if (hasTodo) {
+      delete todos[todoIndex] 
+    } 
 
     todos.push(newTodo)
 
