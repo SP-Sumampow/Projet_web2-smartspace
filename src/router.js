@@ -4,6 +4,7 @@ const userController = require('./controller/userController');
 const todoController = require('./controller/todoController');
 const placeController = require('./controller/placeController');
 const workerController = require('./controller/workerController');
+const todosController = require('./controller/todosController');
 
 const init = (app) => {
   // user
@@ -16,13 +17,17 @@ const init = (app) => {
   app.post('/todo', todoController.postTodo);
   app.get('/todos', todoController.getTodos);
 
+  //new Todos
+  app.post('/newtodo', todosController.addTodo);
+  app.get('/todostext', todosController.getTodos);
+
   //Rooms
   app.get('/places', placeController.getPlaces);
   app.get('/fakeplaces', placeController.getFakePlaces);
 
   app.post('/userWorker/signUpWorker', workerController.signUpWorker);
   app.post('/userWorker/signInWorker', workerController.signInWorker);
-  app.post('/userWorker/logoutWorker', workerController.logoutWorker);
+  //app.post('/userWorker/logoutWorker', workerController.logoutWorker);
   app.get('/userWorker', userController.getUser);
 
   app.get('/', async (req, res) => {

@@ -64,7 +64,7 @@ const signInWorker = async (req, res) => {
     .createCustomToken(uid)
     .then((customToken) => {
 
-      res.cookie('token', customToken)
+      //res.cookie('token', customToken)
       res.status(200).send("login");
     })
     .catch((error) => {
@@ -89,22 +89,22 @@ const getUserWorker = async (req, res) => {
   res.status(200).json(user);  
 };
 
-  const logoutWorker = async (req, res) => {
-  // authentification
-  const token = req.cookies.token
-  console.log(token)
-  if (!token) return res.status(401).send("cookie not found");
-  const userpayload = await authMiddleware.decodeFirebaseIdToken(token)
-  if (userpayload.error) return res.status(400).json({"error": userpayload.error});
+//   const logoutWorker = async (req, res) => {
+//   // authentification
+//   // const token = req.cookies.token
+//   // console.log(token)
+//   // if (!token) return res.status(401).send("cookie not found");
+//   const userpayload = await authMiddleware.decodeFirebaseIdToken(token)
+//   if (userpayload.error) return res.status(400).json({"error": userpayload.error});
 
-  res.cookie('token', null)
-  res.status(200).send("logout");
-};
+//   //res.cookie('token', null)
+//   res.status(200).send("logout");
+// };
 
 
 module.exports = {
   signUpWorker,
   signInWorker,
   getUserWorker,
-  logoutWorker
+  //logoutWorker
 };
