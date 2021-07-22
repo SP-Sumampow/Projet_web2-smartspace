@@ -7,7 +7,7 @@ const token = 'ioIPOw_PJ1pOp6LcFP7J1BCGnR63VCl4vKQSMu5FkZEvCFHFHmkT0qcQaYWz9sOJR
 const org = 'heticproject-web2-smartspace'
 const bucket = 'MQTT-smartspace'
 
-const client = new InfluxDB({ url: 'http://35.226.50.175:8086', token: token })
+const client = new InfluxDB({ url: 'http://34.132.95.151:8086', token: token })
 
 
 const authMiddleware = require('../auth.middleware.js');
