@@ -20,6 +20,7 @@ const postTodo = async (req, res) => {
   const uid = user.uid
   
   const db = firebase.admin.firestore();
+  const createDBTodo = db.collection('todos').doc(uid);
   
   if (title === undefined || title === '') {
     res.status(400).json({'error': 'title not found'});
