@@ -14,12 +14,13 @@ const init = (app) => {
   app.get('/user', userController.getUser);
 
   //Todo
-  app.post('/todo', todoController.postTodo);
-  app.get('/todos', todoController.getTodos);
+  app.get('/todosold', todoController.getTodos);
 
   //new Todos
-  app.post('/newtodo', todosController.addTodo);
-  app.get('/todostext', todosController.getTodos);
+  app.post('/todo', todosController.addTodo);
+  app.put('/todo', todosController.putTodo);
+  app.delete('/todo', todosController.deleteTodo);
+  app.get('/todos', todosController.getTodos);
 
   //Rooms
   app.get('/places', placeController.getPlaces);
