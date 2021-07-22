@@ -29,7 +29,18 @@ const signUp = async (req, res) => {
           email: userRecord.email,
           isSubscribed: false,
         });
-        res.status(200).json(userRecord);
+
+        await firebase.admin
+        .auth()
+        .createCustomToken(userRecord.uid,)
+        .then((customToken) => {
+          res.cookie('token', customToken)
+          res.status(200).send("login");
+        })
+        .catch((error) => {
+          console.log('Error creating custom token:', error);
+          res.status(406).json(error);
+        });
       })
       .catch((error) => {
         console.log(error);
