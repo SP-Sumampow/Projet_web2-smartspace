@@ -57,7 +57,7 @@ const addTodo = async (req, res) => {
 
     await db.collection('todos').doc(uid).set({todos}, {merge: true});
 
-    res.status(200).json({ getTodos});
+    res.status(200).json({ newTodo});
   } else {
     res.status(404)
   }
