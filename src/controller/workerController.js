@@ -2,9 +2,11 @@
 const firebase = require('../firebaseConfig');
 const authMiddleware = require('../auth.middleware.js');
 
-const signUp = async (req, res) => {
+const signUpWorker = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
+  const badge = req.body.badge;
+  const telephoneNumber = req.body.telephoneNumber;
 
 
   if (email === undefined || email === '') {
@@ -15,6 +17,16 @@ const signUp = async (req, res) => {
     res.status(400).json({'error': 'password not found'});
   }
 
+  if (badge === undefined || badge === '') {
+    res.status(400).json({'error': 'badge number not found'});
+  }
+
+  if (telephoneNumber === undefined || telephoneNumber === '') {
+    res.status(400).json({'error': 'telephone number not found'});
+  }
+
+  
+
   await firebase.admin
       .auth()
       .createUser({
@@ -24,10 +36,12 @@ const signUp = async (req, res) => {
       })
     .then(async (userRecord) => {
         const db = firebase.admin.firestore();
-        await db.collection('users').doc(userRecord.uid).set({
+        await db.collection('worker').doc(userRecord.uid).set({
           uid: userRecord.uid,
           email: userRecord.email,
           isSubscribed: false,
+          telephone: telephoneNumber,
+          badge: badge
         });
         res.status(200).json(userRecord);
       })
@@ -37,7 +51,7 @@ const signUp = async (req, res) => {
       });
 };
 
-const signIn = async (req, res) => {
+const signInWorker = async (req, res) => {
   const uid = req.body.uid;
 
 
@@ -59,7 +73,7 @@ const signIn = async (req, res) => {
     });
 };
 
-const getUser = async (req, res) => {
+const getUserWorker = async (req, res) => {
   // authentification
   const token = req.cookies.token
 
@@ -75,7 +89,7 @@ const getUser = async (req, res) => {
   res.status(200).json(user);  
 };
 
-  const logout = async (req, res) => {
+  const logoutWorker = async (req, res) => {
   // authentification
   const token = req.cookies.token
   console.log(token)
@@ -89,8 +103,8 @@ const getUser = async (req, res) => {
 
 
 module.exports = {
-  signUp,
-  signIn,
-  getUser,
-  logout
+  signUpWorker,
+  signInWorker,
+  getUserWorker,
+  logoutWorker
 };
