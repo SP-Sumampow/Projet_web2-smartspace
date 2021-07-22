@@ -14,8 +14,6 @@ const authMiddleware = require('../auth.middleware.js');
 const firebase = require('../firebaseConfig');
 const admin = require('firebase-admin');
 
-let places = [];
-
 const fakedata = {
   "places": [
     {
@@ -360,7 +358,8 @@ const getFakePlaces = (req, res) => {
   const getPlaces = (req, res) => {
 
   const queryApi = client.getQueryApi(org);
-  const query = `from(bucket: "${bucket}") |> range(start: -1h)`
+    const query = `from(bucket: "${bucket}") |> range(start: -1h)`
+    let places = [];
 
   queryApi.queryRows(query, {
     next(row, tableMeta) {
@@ -393,8 +392,6 @@ const getFakePlaces = (req, res) => {
     },
   })
 
-
-  //res.status(200).json({ "todo": [{ "title":"newTodo"}]});
 }
 
 module.exports = {
